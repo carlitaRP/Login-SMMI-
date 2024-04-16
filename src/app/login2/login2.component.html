@@ -1,1 +1,66 @@
-<p>login2 works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form in HTML and CSS | Codehal</title>
+    <link rel="stylesheet" href="login2.component.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    
+    <div class="wrapper">
+        <form (submit)="onSubmit()" id="loginForm">
+            <h1>Iniciar Sesión</h1>
+            <img src="./logo.jpg" alt="logo" class="logo">
+            <div class="input-box">
+                <input type="text" placeholder="Matricula" required [(ngModel)]="matricula" name="matricula">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Contraseña" required [(ngModel)]="password" name="password" #passwordInput>
+                <button type="button" class="toggle-password" (click)="togglePasswordVisibility(passwordInput)">
+                    <i class="bx" [ngClass]="{'bxs-hide': passwordInput.type === 'text', 'bxs-show': passwordInput.type === 'password'}"></i>
+                </button>
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox">Recordar</label>
+                <a href="#">¿Has olvidado tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="btn">Iniciar Sesión</button>
+
+            <div class="register-link">
+                <p> ¿Notienes una cuenta? <a href="#">Registro</a></p>
+            </div>
+        </form>
+    </div>
+
+    <div id="successPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup" (click)="closePopup('successPopup')">&times;</span>
+            <p>Autenticación exitosa</p>
+        </div>
+    </div>
+    
+    <div id="errorPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup" (click)="closePopup('errorPopup')">&times;</span>
+            <p>Autenticación fallida. Por favor, verifica tus credenciales.</p>
+        </div>
+    </div>
+    
+    <div id="blankFieldsPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup" (click)="closePopup('blankFieldsPopup')">&times;</span>
+            <p>Completa los campos</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
