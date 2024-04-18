@@ -11,54 +11,38 @@
 </head>
 
 <body>
-    
+
     <div class="wrapper">
         <form (submit)="onSubmit()" id="loginForm">
             <h1>Iniciar Sesión</h1>
-            <img src="./logo.jpg" alt="logo" class="logo">
+            <img src="./imagen/logo.jpg" alt="logo" class="logo">
+            
             <div class="input-box">
-                <input type="text" placeholder="Matricula" required [(ngModel)]="matricula" name="matricula">
+                <input type="text" placeholder="Matricula" required [(ngModel)]="usuario.matricula" name="matricula">
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Contraseña" required [(ngModel)]="password" name="password" #passwordInput>
+                <input type="password" placeholder="Contraseña" required [(ngModel)]="usuario.password" name="password" #passwordInput>
                 <button type="button" class="toggle-password" (click)="togglePasswordVisibility(passwordInput)">
                     <i class="bx" [ngClass]="{'bxs-hide': passwordInput.type === 'text', 'bxs-show': passwordInput.type === 'password'}"></i>
                 </button>
             </div>
 
-            <div class="remember-forgot">
-                <label><input type="checkbox">Recordar</label>
-                <a href="#">¿Has olvidado tu contraseña?</a>
-            </div>
-
             <button type="submit" class="btn">Iniciar Sesión</button>
 
-            <div class="register-link">
-                <p> ¿Notienes una cuenta? <a href="#">Registro</a></p>
-            </div>
         </form>
     </div>
 
-    <div id="successPopup" class="popup">
-        <div class="popup-content">
-            <span class="close-popup" (click)="closePopup('successPopup')">&times;</span>
-            <p>Autenticación exitosa</p>
-        </div>
+    <div class="toast success" id="successToast">
+        Autenticación exitosa
     </div>
-    
-    <div id="errorPopup" class="popup">
-        <div class="popup-content">
-            <span class="close-popup" (click)="closePopup('errorPopup')">&times;</span>
-            <p>Autenticación fallida. Por favor, verifica tus credenciales.</p>
-        </div>
+
+    <div class="toast error" id="errorToast">
+        Autenticación fallida. Por favor, verifica tus credenciales.
     </div>
-    
-    <div id="blankFieldsPopup" class="popup">
-        <div class="popup-content">
-            <span class="close-popup" (click)="closePopup('blankFieldsPopup')">&times;</span>
-            <p>Completa los campos</p>
-        </div>
+
+    <div class="toast error" id="blankFieldsToast">
+        Completa los campos
     </div>
 
 </body>
